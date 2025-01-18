@@ -50,8 +50,8 @@ function KareninAlani(kenaruzunlugu) {
 	4. Hesaplanan çemberin çevresi döndürülecektir.
 */
 
-function CemberinCevresi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinCevresi(cemberinYaricapi) {
+  return 2*pi*cemberinYaricapi;
 }
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
@@ -64,8 +64,8 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(cemberinYaricapi,piSayisi) {
+  return piSayisi*Math.pow(cemberinYaricapi,2);
 }
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
@@ -96,6 +96,55 @@ let ucetambolunenler,
   besyuzdenkucuksayilar,
   siralisayilar,
   tekraredensayilar;
+
+
+  enkucuk = sayilar[0];
+  enbuyuk = sayilar[0];
+
+  for(let i=1; i < sayilar.length; i++) {
+    if (enkucuk > sayilar[i] ) {
+      enkucuk = sayilar[i];
+    }
+
+    if (enbuyuk < sayilar[i] ) {
+      enbuyuk = sayilar[i];
+    }
+
+  }
+
+  sayilar.forEach(sayi => {
+    if(sayi % 3 === 0) {
+      ucetambolunenler.push(sayi);
+    }
+  });
+
+  ucebolunenlerintoplami = ucetambolunenler.reduce((toplam,sayi) => {
+    return toplam + sayi;
+  },0);
+
+besyuzdenkucuksayilar= sayilar.filter(sayi => sayi< 500);
+
+siralisayilar = besyuzdenkucuksayilar.sort((a,b) => a-b);
+
+const tekrarObj = {};
+
+sayilar.forEach(sayi => {
+  if(tekrarObj[sayi] === undefined) {
+    tekrarObj[sayi] = 1;
+
+  } else {
+    tekrarObj[sayi]++;
+  }
+});
+
+tekraredensayilar = [];
+
+for(let key in tekrarObj) {
+  if(tekrarObj[key] > 1) {
+    tekraredensayilar.push(`${key} sayısı ${tekrarObj[key]} kere tekrar edilmiştir.`);
+  } 
+}
+
 
 // 3a çözümü
 
